@@ -14,3 +14,4 @@ parsing expr (reusing grammar)1000000 times..
 Done
 ```
 
+As expected, parsing expressions (even when re-using grammar) is about 30 times slower than copying
