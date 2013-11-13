@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 
 
     {
-        std::cerr << "copying expr " << NUM_RUNS << " time.. " << std::endl;
+        std::cerr << "copying expr " << NUM_RUNS << " times.. " << std::endl;
         boost::timer::auto_cpu_timer t;
         for (int i=0; i< NUM_RUNS; ++i)
         {
@@ -48,7 +48,7 @@ int main(int argc, char** argv)
     }
 
     {
-        std::cerr << "parsing expr " << NUM_RUNS << " time.. " << std::endl;
+        std::cerr << "parsing expr " << NUM_RUNS << " times.. " << std::endl;
         boost::timer::auto_cpu_timer t;
         for (int i=0; i< NUM_RUNS; ++i)
         {
@@ -63,7 +63,7 @@ int main(int argc, char** argv)
 
 
     {
-        std::cerr << "parsing expr (reusing grammar)" << NUM_RUNS << " time.. " << std::endl;
+        std::cerr << "parsing expr (reusing grammar)" << NUM_RUNS << " times.. " << std::endl;
         boost::timer::auto_cpu_timer t;
         mapnik::transcoder tr("utf8");
         mapnik::expression_grammar<std::string::const_iterator> g(tr);
