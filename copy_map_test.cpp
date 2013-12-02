@@ -11,13 +11,8 @@
 #include <mapnik/symbolizer.hpp>
 #include <mapnik/enumeration.hpp>
 #include <mapnik/image_compositing.hpp>
-
-// boost
-#include <boost/timer/timer.hpp>
-#include <boost/mpl/vector.hpp>
-#include <boost/mpl/find.hpp>
-#include <boost/mpl/at.hpp>
-
+#include <mapnik/util/timer.hpp>
+// stl
 #include <cassert>
 
 int main(int argc, char** argv)
@@ -48,7 +43,7 @@ int main(int argc, char** argv)
 
     {
         std::cerr << "copying map " << NUM_RUNS << " times.. " << std::endl;
-        boost::timer::auto_cpu_timer t;
+        mapnik::auto_cpu_timer t(std::cerr, "copy took: ");
         for (int i=0; i< NUM_RUNS; ++i)
         {
             mapnik::Map new_map(m); // copy ctor
@@ -64,7 +59,7 @@ int main(int argc, char** argv)
 
     {
         std::cerr << "parsing xml style " << NUM_RUNS << " times.. " << std::endl;
-        boost::timer::auto_cpu_timer t;
+        mapnik::auto_cpu_timer t(std::cerr, "loading took: ");
         for (int i=0; i< NUM_RUNS; ++i)
         {
             mapnik::Map new_map(256,256);

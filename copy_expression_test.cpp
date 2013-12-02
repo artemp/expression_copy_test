@@ -5,9 +5,7 @@
 #include <mapnik/expression_string.hpp>
 #include <mapnik/expression_evaluator.hpp>
 #include <mapnik/config_error.hpp>
-
-// boost
-#include <boost/timer/timer.hpp>
+#include <mapnik/util/timer.hpp>
 
 int main(int argc, char** argv)
 {
@@ -36,7 +34,7 @@ int main(int argc, char** argv)
 
     {
         std::cerr << "copying expr " << NUM_RUNS << " times.. " << std::endl;
-        boost::timer::auto_cpu_timer t;
+        mapnik::auto_cpu_timer t(std::cerr, "copy took: ");
         for (int i=0; i< NUM_RUNS; ++i)
         {
             mapnik::expression_ptr copy_node = std::make_shared<mapnik::expr_node>(*expr);
@@ -49,7 +47,7 @@ int main(int argc, char** argv)
 
     {
         std::cerr << "parsing expr " << NUM_RUNS << " times.. " << std::endl;
-        boost::timer::auto_cpu_timer t;
+        mapnik::auto_cpu_timer t(std::cerr, "parsing took: ");
         for (int i=0; i< NUM_RUNS; ++i)
         {
             std::string str = mapnik::to_expression_string(*expr);
@@ -64,7 +62,7 @@ int main(int argc, char** argv)
 
     {
         std::cerr << "parsing expr (reusing grammar)" << NUM_RUNS << " times.. " << std::endl;
-        boost::timer::auto_cpu_timer t;
+        mapnik::auto_cpu_timer t(std::cerr, "");
         mapnik::transcoder tr("utf8");
         mapnik::expression_grammar<std::string::const_iterator> g(tr);
         for (int i=0; i< NUM_RUNS; ++i)

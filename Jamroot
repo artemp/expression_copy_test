@@ -5,16 +5,11 @@ local MAPNIK_DEPS_DIR = "/opt/mapnik_deps" ;
 lib mapnik : : <name>mapnik <search>$(MAPNIK_DIR)/lib ;
 lib icuuc : : <name>icuuc <search>/opt/icu/lib ;
 lib system : : <name>boost_system <search>$(BOOST_DIR)/lib ;
-lib timer : chrono : <name>boost_timer <search>$(BOOST_DIR)/lib ;
-lib chrono : system : <name>boost_chrono <search>$(BOOST_DIR)/lib ;
-
 
 exe copy-expression-test :
     copy_expression_test.cpp
     .//icuuc
     .//system
-    .//timer
-    .//chrono
     .//mapnik
     :
     <include>$(BOOST_DIR)/include
@@ -29,8 +24,6 @@ exe copy-map-test :
     copy_map_test.cpp
     .//icuuc
     .//system
-    .//timer
-    .//chrono
     .//mapnik
     :
     <include>$(BOOST_DIR)/include
